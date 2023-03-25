@@ -182,7 +182,7 @@ public class login extends javax.swing.JFrame {
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Slide42.JPG"))); // NOI18N
         background.setText("jLabel5");
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 830));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
