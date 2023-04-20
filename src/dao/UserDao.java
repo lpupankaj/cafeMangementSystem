@@ -102,4 +102,23 @@ public class UserDao {
             
         }
     }
+    
+    public static void changeSecurityQuestion(String email,String password,String securityQuestion,String answer){
+        try{
+            ResultSet rs = DbOperations.getData("select * from user where email='"+email+"' and password='"+password+"'");
+            if(rs.next()){
+                update(email,securityQuestion,answer);
+            }else{
+                JOptionPane.showMessageDialog(null, "Old Password is Incorrect");
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    
+    public static void update(String email,String securityQuestion,String answer){
+        String query="update user set securityQuestion='"+securityQuestion+"',answer='"+answer+"' where email='"+email+"'";
+        DbOperations.setDataOrDelete(query, "Security Question Saved Sucssfully");
+    }
 }

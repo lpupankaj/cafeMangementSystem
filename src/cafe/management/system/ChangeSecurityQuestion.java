@@ -4,11 +4,16 @@
  */
 package cafe.management.system;
 
+import dao.UserDao;
+import model.User;
+
 /**
  *
  * @author girip
  */
 public class ChangeSecurityQuestion extends javax.swing.JFrame {
+    
+    public String userEmail;
 
     /**
      * Creates new form ChangeSecurityQuestion
@@ -17,6 +22,23 @@ public class ChangeSecurityQuestion extends javax.swing.JFrame {
         initComponents();
     }
 
+    public ChangeSecurityQuestion(String email) {
+        initComponents();
+        userEmail=email;
+        txtOldSQ.setEditable(false);
+        btnUpdate.setEnabled(false);
+    }
+    
+    public void validateField(){
+        String password=txtPassword.getText();
+        String securityQuestion=txtNewSQ.getText();
+        String answer=txtNewAnswer.getText();
+        if(!password.equals("") && !securityQuestion.equals("") && !answer.equals("")){
+            btnUpdate.setEnabled(true);
+        }else{
+            btnUpdate.setEnabled(false );
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +65,11 @@ public class ChangeSecurityQuestion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(350, 134));
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -53,6 +80,11 @@ public class ChangeSecurityQuestion extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 14, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -84,17 +116,37 @@ public class ChangeSecurityQuestion extends javax.swing.JFrame {
                 txtNewSQActionPerformed(evt);
             }
         });
+        txtNewSQ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNewSQKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtNewSQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 149, 250, -1));
 
         txtNewAnswer.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtNewAnswer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNewAnswerKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtNewAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 196, 250, -1));
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 243, 250, -1));
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 299, 110, -1));
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -112,6 +164,42 @@ public class ChangeSecurityQuestion extends javax.swing.JFrame {
     private void txtNewSQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewSQActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNewSQActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        User user=UserDao.getSecurityQuestion(userEmail);
+        txtOldSQ.setText(user.getSecurityQuestion());
+    }//GEN-LAST:event_formComponentShown
+
+    private void txtNewSQKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewSQKeyReleased
+        // TODO add your handling code here:
+        validateField();
+    }//GEN-LAST:event_txtNewSQKeyReleased
+
+    private void txtNewAnswerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewAnswerKeyReleased
+        // TODO add your handling code here:
+        validateField();
+    }//GEN-LAST:event_txtNewAnswerKeyReleased
+
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        // TODO add your handling code here:
+        validateField();
+    }//GEN-LAST:event_txtPasswordKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        String password=txtPassword.getText();
+        String securityQuestion=txtNewSQ.getText();
+        String answer=txtNewAnswer.getText();
+        UserDao.changeSecurityQuestion(userEmail, password, securityQuestion, answer);
+        setVisible(false);
+        new ChangeSecurityQuestion(userEmail).setVisible(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
