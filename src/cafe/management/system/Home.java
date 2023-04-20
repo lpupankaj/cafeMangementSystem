@@ -109,6 +109,11 @@ public class Home extends javax.swing.JFrame {
         BtnNewProduct.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnNewProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/new product.png"))); // NOI18N
         BtnNewProduct.setText("New Product");
+        BtnNewProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNewProductActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnNewProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 710, -1, -1));
 
         BtnViewEditDeleteProduct.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -119,6 +124,11 @@ public class Home extends javax.swing.JFrame {
         BtnVerifyUsers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnVerifyUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/verify users.png"))); // NOI18N
         BtnVerifyUsers.setText("Verify Users");
+        BtnVerifyUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerifyUsersActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnVerifyUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 710, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home-background-image.png"))); // NOI18N
@@ -149,6 +159,16 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ManageCategory().setVisible(true);
     }//GEN-LAST:event_BtnManageCategoryActionPerformed
+
+    private void BtnNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNewProductActionPerformed
+        // TODO add your handling code here:
+        new Addnewproduct().setVisible(true);
+    }//GEN-LAST:event_BtnNewProductActionPerformed
+
+    private void BtnVerifyUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifyUsersActionPerformed
+        // TODO add your handling code here:
+        new VerifyUsers().setVisible(true);
+    }//GEN-LAST:event_BtnVerifyUsersActionPerformed
 
     /**
      * @param args the command line arguments
