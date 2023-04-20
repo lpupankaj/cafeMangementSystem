@@ -79,6 +79,11 @@ public class Home extends javax.swing.JFrame {
         BtnChangePassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BtnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/change Password.png"))); // NOI18N
         BtnChangePassword.setText("Change Password");
+        BtnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnChangePasswordActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, -1, -1));
 
         BtnChangeSecurityQuestion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -169,6 +174,11 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         new VerifyUsers().setVisible(true);
     }//GEN-LAST:event_BtnVerifyUsersActionPerformed
+
+    private void BtnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnChangePasswordActionPerformed
+        // TODO add your handling code here:
+       new ChangePassword(email).setVisible(true); 
+    }//GEN-LAST:event_BtnChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
